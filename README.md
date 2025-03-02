@@ -19,4 +19,5 @@ python main.py --training_mode fine_tune_test --dataset MDD
 ```
 
 ### 🔹 Hyperparameters for MDD
-\lambda_1 = 0.5, \lambda_2 = 0.8, \lambda_3 = 1
+$\lambda_1 = 0.5, \lambda_2 = 0.8, \lambda_3 = 1
+$
