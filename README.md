@@ -2,6 +2,10 @@
 
 This repository contains the source code for **RESOLVE**, a graph contrastive self-supervised learning framework for functional connectivity analysis.
 
+
+![Image](https://github.com/user-attachments/assets/f499aeb9-b415-491b-ae8a-006125d943e9)
+
+
 ## 🔹 Setup Instructions
 
 1. **Download the required datasets** before running the code.  
