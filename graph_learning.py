@@ -26,7 +26,7 @@ nperseg = 200
 def pad_psd(psd, target_size=101):
     current_size = len(psd)
     if current_size == target_size:
-        return psd  # Do nothing if already 101
+        return psd  
     elif current_size < target_size:
         return np.pad(psd, (0, target_size - current_size), mode='constant')  # Append zeros
     else:
@@ -85,12 +85,6 @@ def compute_coherence_matrix_FFT(fft_data):
             coherence_matrix[i, j] = coherence_value
             coherence_matrix[j, i] = coherence_value
 
-    # Apply threshold: Set values < 0.3 to 0 in a single operation
-    coherence_matrix[coherence_matrix < 0.3] = 0
-
-    # Remove self-coherence
-    np.fill_diagonal(coherence_matrix, 0)
-
     return coherence_matrix
 
 
@@ -148,6 +142,7 @@ def dataset_freq(X, Y, fs, nperseg, pert=False):
             if isinstance(fft_data, torch.Tensor):
                 fft_data = fft_data.cpu().detach().numpy()
         coherence_matrix = compute_coherence_matrix_FFT(fft_data)
+        coherence_matrix = compute_KNN_graph(coherence_matrix)
         #psd_data = np.array([compute_psd(signal, fs=fs, nperseg=nperseg)[1] for signal in signals])
         psd_data = np.array([pad_psd(compute_psd(signal, fs=fs, nperseg=nperseg)[1], 101) for signal in signals])
         
