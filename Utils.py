@@ -148,11 +148,7 @@ def to_tensor(X_featgraph, X_adjgraph, Y, Sex):
 
 
 def compute_KNN_graph(matrix, k_degree=10):
-    """ 
-    Calculate the adjacency matrix from the connectivity matrix, 
-    normalize it between 0 and 1, apply a threshold of 0.3, 
-    and remove self-connections (diagonal elements).
-    """
+
 
     matrix = np.abs(matrix)  # Ensure non-negative values
     idx = np.argsort(-matrix)[:, 0:k_degree]  # Get top-k strongest connections
