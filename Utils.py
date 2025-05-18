@@ -163,17 +163,6 @@ def compute_KNN_graph(matrix, k_degree=10):
     # Create adjacency matrix
     A = adjacency(matrix, idx).astype(np.float32)
 
-    # Normalize adjacency matrix between [0,1]
-    A_min = A.min()
-    A_max = A.max()
-    A = (A - A_min) / (A_max - A_min + 1e-8)  # Avoid division by zero
-
-    # Apply threshold: Set values < 0.3 to 0
-    A[A < 0.3] = 0
-
-    # Remove self-connections (diagonal elements must be 0)
-    np.fill_diagonal(A, 0)
-
     return A
 
 
